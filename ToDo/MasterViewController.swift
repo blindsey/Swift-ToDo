@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class MasterViewController: UITableViewController, UITextViewDelegate {
 
@@ -24,6 +25,25 @@ class MasterViewController: UITableViewController, UITextViewDelegate {
 
         let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
         self.navigationItem.rightBarButtonItem = addButton
+
+        var query = CKQuery(recordType: "task", predicate: NSPredicate(format: "uuid == %@", UIDevice.currentDevice().identifierForVendor.UUIDString))
+        var operation = CKQueryOperation(query: query)
+        operation.recordFetchedBlock = { record in
+            if let t = record.objectForKey("text") as? String {
+                self.objects.append(t)
+            }
+        }
+        operation.queryCompletionBlock = { cursor, error in
+            if error {
+                println(error)
+            } else {
+                NSOperationQueue.mainQueue().addOperationWithBlock() {
+                    self.tableView.reloadData()
+                }
+            }
+        }
+        var database = CKContainer.defaultContainer().publicCloudDatabase
+        database.addOperation(operation)
     }
 
     override func didReceiveMemoryWarning() {
@@ -92,6 +112,18 @@ class MasterViewController: UITableViewController, UITextViewDelegate {
         self.tableView.endUpdates()
 
         return true
+    }
+
+    func textViewDidEndEditing(textView: UITextView!) {
+        var record = CKRecord(recordType: "task")
+        record.setObject(textView.text, forKey: "text")
+        record.setObject(UIDevice.currentDevice().identifierForVendor.UUIDString, forKey: "uuid")
+        var database = CKContainer.defaultContainer().publicCloudDatabase
+        database.saveRecord(record) { record, error in
+            if let e = error {
+                println(e)
+            }
+        }
     }
 }
 

@@ -12,6 +12,7 @@
 		13190262197B07CB00D40A00 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 13190260197B07CB00D40A00 /* Main.storyboard */; };
 		13190264197B07CB00D40A00 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13190263197B07CB00D40A00 /* Images.xcassets */; };
 		13190270197B07CB00D40A00 /* ToDoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1319026F197B07CB00D40A00 /* ToDoTests.swift */; };
+		13651DC7197BCD0200575E32 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13651DBF197BC36F00575E32 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +35,8 @@
 		13190269197B07CB00D40A00 /* ToDoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToDoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1319026E197B07CB00D40A00 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1319026F197B07CB00D40A00 /* ToDoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToDoTests.swift; sourceTree = "<group>"; };
+		13651DBE197BC28600575E32 /* ToDo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = ToDo.entitlements; sourceTree = "<group>"; };
+		13651DBF197BC36F00575E32 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +44,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13651DC7197BCD0200575E32 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +61,7 @@
 		1319024C197B07CB00D40A00 = {
 			isa = PBXGroup;
 			children = (
+				13651DBF197BC36F00575E32 /* CloudKit.framework */,
 				13190257197B07CB00D40A00 /* ToDo */,
 				1319026C197B07CB00D40A00 /* ToDoTests */,
 				13190256197B07CB00D40A00 /* Products */,
@@ -75,6 +80,7 @@
 		13190257197B07CB00D40A00 /* ToDo */ = {
 			isa = PBXGroup;
 			children = (
+				13651DBE197BC28600575E32 /* ToDo.entitlements */,
 				1319025A197B07CB00D40A00 /* AppDelegate.swift */,
 				1319025C197B07CB00D40A00 /* MasterViewController.swift */,
 				13190260197B07CB00D40A00 /* Main.storyboard */,
@@ -158,6 +164,12 @@
 				TargetAttributes = {
 					13190254197B07CB00D40A00 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = Y625XV9HQM;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					13190268197B07CB00D40A00 = {
 						CreatedOnToolsVersion = 6.0;
@@ -325,9 +337,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ToDo/ToDo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ToDo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -336,9 +353,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = ToDo/ToDo.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ToDo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -395,6 +417,7 @@
 				13190275197B07CB00D40A00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		13190276197B07CB00D40A00 /* Build configuration list for PBXNativeTarget "ToDoTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +426,7 @@
 				13190278197B07CB00D40A00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
