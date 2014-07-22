@@ -78,7 +78,7 @@ class MasterViewController: UITableViewController, UITextViewDelegate {
         let string = objects[indexPath.row]
 
         let attributes = [ NSFontAttributeName: UIFont.systemFontOfSize(18.0)]
-        let size = string.bridgeToObjectiveC().boundingRectWithSize(CGSize(width: 310, height: CGFLOAT_MAX), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: attributes, context: nil)
+        let size = string.bridgeToObjectiveC().boundingRectWithSize(CGSize(width: 310, height: CGFloat.max), options: NSStringDrawingOptions.UsesLineFragmentOrigin, attributes: attributes, context: nil)
         return max(44.0, size.height)
     }
 
